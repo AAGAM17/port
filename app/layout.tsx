@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import CommandPalette from '@/components/CommandPalette';
+import ThemeLayout from '@/components/themes/ThemeLayout';
 
 export const metadata: Metadata = {
     title: 'Aagam Shah | Full Stack × AI × Deep Tech',
@@ -29,9 +30,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
             <body className="noise-overlay">
-                <CommandPalette />
-                {children}
+                <ThemeLayout>
+                    <CommandPalette />
+                    {children}
+                </ThemeLayout>
             </body>
         </html>
     );
 }
+
