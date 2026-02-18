@@ -148,7 +148,7 @@ export default function HomePage() {
                         <span className="text-[10px] font-mono tracking-[0.2em] text-cyan-400/70">SYSTEM ACTIVE</span>
                     </motion.div>
                     <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-6" style={{ fontFamily: 'var(--font-grotesk)' }}>
-                        AAGAM<br /><span className="text-gradient">SHAH</span>
+                        AAGAM <span className="text-gradient">SHAH</span>
                     </h1>
                     <p className="text-sm md:text-base font-mono text-gray-500 tracking-wider mb-4">{personalInfo.role}</p>
                     <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12">{personalInfo.bio}</p>
