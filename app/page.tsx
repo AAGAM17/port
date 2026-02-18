@@ -94,7 +94,7 @@ export default function HomePage() {
                             <span className="text-xs font-mono tracking-[0.3em] text-cyan-400/80">AAGAM.SYS</span>
                         </Link>
                         <div className="hidden lg:flex items-center gap-3 text-[10px] font-mono text-gray-600 border-l border-cyan-400/10 pl-4">
-                            <span className="flex items-center gap-1"><MapPin size={9} /> 19.07°N, 72.87°E</span>
+                            <span className="relative group flex items-center gap-1 cursor-default"><MapPin size={9} /> 19.07°N, 72.87°E<span className="absolute left-1/2 -translate-x-1/2 -bottom-7 px-2 py-1 bg-gray-900 border border-cyan-400/20 rounded text-[9px] text-cyan-400 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Mumbai, India</span></span>
                             <span className="text-cyan-400/60"><LiveClock /></span>
                         </div>
                     </div>

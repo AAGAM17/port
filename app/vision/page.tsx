@@ -35,7 +35,7 @@ export default function VisionPage() {
                     <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] mb-10" style={{ fontFamily: 'var(--font-grotesk)' }}>
                         The future belongs to<br /><span className="text-gradient">autonomous intelligence</span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto">AI that doesn&apos;t just think — it <em>acts</em>. In the real world. At scale.</p>
+                    <p className="text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto">AI that doesn&apos;t just think it <em>acts</em>. In the real world. At scale.</p>
                 </motion.div>
             </section>
 

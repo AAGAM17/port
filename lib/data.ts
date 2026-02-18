@@ -92,7 +92,7 @@ export const personalInfo = {
         period: 'Aug 2023 — May 2027',
         location: 'Mumbai, MH',
     },
-    bio: 'Building at the intersection of AI, autonomous systems, and deep tech. I turn complex engineering problems into elegant, working systems — from multi-UAV swarms to production AI SaaS platforms.',
+    bio: 'Building at the intersection of AI, autonomous systems, and deep tech. I turn complex engineering problems into elegant, working systems from multi-UAV swarms to production AI SaaS platforms.',
 };
 
 // === SYSTEM METRICS (Landing) ===
@@ -535,27 +535,27 @@ Next stop: your engineering team.
 export const testimonials: Testimonial[] = [
     {
         id: 't1',
-        name: 'Arjun Mehta',
+        name: 'Ayush Suri',
         role: 'Engineering Manager',
-        company: 'Sereno',
+        company: 'Fyre Gig',
         quote: 'Aagam delivered production-grade code at a pace I haven\'t seen from most senior engineers. His AI automation work saved us 60+ hours weekly.',
-        avatar: 'AM',
+        avatar: 'AS',
     },
     {
         id: 't2',
-        name: 'Priya Desai',
-        role: 'Co-Founder',
-        company: 'Fyre Gig',
-        quote: 'One of the most versatile developers I\'ve worked with. Aagam built our entire mobile + web stack in weeks — and it looked incredible.',
-        avatar: 'PD',
+        name: 'Swarali Pednekar',
+        role: 'Team Mate',
+        company: '',
+        quote: 'Working with Aagam in a team is a wonderful experience. We have been a part of a hackathon and Aagam played a very important role in our team. His skills in the field of Computer are exceptional, along with his good communication skills. He is always true to his words and decicated towards every task he takes in hand.',
+        avatar: 'SP',
     },
     {
         id: 't3',
-        name: 'Dr. Rakesh Patel',
-        role: 'Faculty Advisor',
-        company: 'DJSCE / SAE Aero Design',
+        name: 'Shammanth Padpu',
+        role: 'Client',
+        company: 'PlanMyTodo',
         quote: 'As Advanced Class Head and Coding Lead, Aagam elevated our entire team. His flight control algorithms were pivotal to our global rankings.',
-        avatar: 'RP',
+        avatar: 'SP',
     },
     {
         id: 't4',
