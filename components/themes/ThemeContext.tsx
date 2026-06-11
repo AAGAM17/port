@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export type ThemeId = 'default' | 'google' | 'macos' | 'win95' | 'newspaper' | 'vscode';
+export type ThemeId = 'default' | 'galaxy' | 'generic' | 'google' | 'macos' | 'win95' | 'newspaper' | 'vscode';
 
 export interface ThemeInfo {
     id: ThemeId;
@@ -13,12 +13,14 @@ export interface ThemeInfo {
 }
 
 export const THEMES: ThemeInfo[] = [
-    { id: 'default', name: 'AAGAM.SYS', icon: 'A', description: 'dark-tech', color: '#22d3ee' },
-    { id: 'google', name: 'Google Search', icon: 'G', description: '"Google yourself"', color: '#4285f4' },
+    { id: 'default', name: 'Aagam Shah', icon: 'A', description: 'The cinematic original', color: '#22d3ee' },
+    { id: 'galaxy', name: 'Galaxy', icon: '✦', description: 'Skills as a living Milky Way', color: '#a78bfa' },
+    { id: 'generic', name: 'Generic', icon: 'Aa', description: 'The beautiful, classic portfolio', color: '#9a3b1e' },
+    { id: 'google', name: 'Google Search', icon: 'G', description: 'Google yourself — results included', color: '#4285f4' },
     // { id: 'macos', name: 'macOS Finder', icon: '🍎', description: 'Desktop with dock & windows', color: '#007aff' },
     // { id: 'win95', name: 'Windows 95', icon: '🪟', description: 'Retro nostalgia', color: '#008080' },
-    { id: 'newspaper', name: 'The Daily Aagam', icon: '📰', description: 'Broadsheet newspaper', color: '#8b7355' },
-    { id: 'vscode', name: 'VS Code', icon: '💻', description: 'IDE as portfolio', color: '#007acc' },
+    { id: 'newspaper', name: 'The Daily Aagam', icon: '¶', description: 'Morning broadsheet edition', color: '#8b7355' },
+    { id: 'vscode', name: 'VS Code', icon: '{}', description: 'The portfolio as an IDE', color: '#007acc' },
 ];
 
 interface ThemeContextType {

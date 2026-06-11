@@ -2,28 +2,39 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { personalInfo, projects, experiences, achievements } from '@/lib/data';
+import { personalInfo, projects, experiences, achievements, skills, clusterLabels, SkillCluster } from '@/lib/data';
 
 /* ═══════════════════════════════════════
    VS CODE THEME
-   Portfolio as an IDE — file tree, tabs, editor
+   Portfolio as an IDE — file tree, tabs,
+   editor, integrated terminal
    ═══════════════════════════════════════ */
 
 interface FileItem {
     name: string;
-    icon: string;
+    badge: string;
+    badgeColor: string;
     id: string;
 }
 
 const FILES: FileItem[] = [
-    { name: 'about.ts', icon: '📘', id: 'about' },
-    { name: 'projects.json', icon: '📦', id: 'projects' },
-    { name: 'experience.yaml', icon: '📄', id: 'experience' },
-    { name: 'skills.config', icon: '⚙️', id: 'skills' },
-    { name: 'achievements.md', icon: '🏆', id: 'achievements' },
-    { name: 'contact.env', icon: '📧', id: 'contact' },
-    { name: 'README.md', icon: '📖', id: 'readme' },
+    { name: 'about.ts', badge: 'TS', badgeColor: '#3178c6', id: 'about' },
+    { name: 'projects.json', badge: '{}', badgeColor: '#cbcb41', id: 'projects' },
+    { name: 'experience.yaml', badge: 'Y', badgeColor: '#a074c4', id: 'experience' },
+    { name: 'skills.toml', badge: 'T', badgeColor: '#9c4221', id: 'skills' },
+    { name: 'achievements.md', badge: 'M↓', badgeColor: '#519aba', id: 'achievements' },
+    { name: '.env.contact', badge: '≡', badgeColor: '#8a8a8a', id: 'contact' },
+    { name: 'README.md', badge: 'M↓', badgeColor: '#519aba', id: 'readme' },
 ];
+
+function FileBadge({ file, size = 'text-[8px]' }: { file?: FileItem; size?: string }) {
+    if (!file) return null;
+    return (
+        <span className={`${size} font-bold leading-none w-4 text-center shrink-0`} style={{ color: file.badgeColor }}>
+            {file.badge}
+        </span>
+    );
+}
 
 function renderAbout() {
     return (
@@ -81,27 +92,26 @@ function renderExperience() {
 }
 
 function renderSkills() {
-    const skills = ['TypeScript', 'Python', 'React', 'Next.js', 'Node.js', 'TensorFlow', 'AWS', 'Docker', 'OpenCV', 'C++', 'PostgreSQL', 'MongoDB', 'Tailwind', 'GraphQL', 'Git'];
-    return (
-        <div className="space-y-1">
-            <Line n={1} c="comment">{'# skills.config — Technical Proficiencies'}</Line>
-            <Line n={2} />
-            <Line n={3}>[<V>languages</V>]</Line>
-            {['TypeScript', 'Python', 'C++', 'JavaScript'].map((s, i) => (
-                <Line key={i + 4} n={i + 4}><P>{s.toLowerCase()}</P> = <N>true</N></Line>
-            ))}
-            <Line n={8} />
-            <Line n={9}>[<V>frameworks</V>]</Line>
-            {['React', 'Next.js', 'Node.js', 'TensorFlow'].map((s, i) => (
-                <Line key={i + 10} n={i + 10}><P>{s.toLowerCase().replace('.', '_')}</P> = <N>true</N></Line>
-            ))}
-            <Line n={14} />
-            <Line n={15}>[<V>tools</V>]</Line>
-            {skills.slice(6).map((s, i) => (
-                <Line key={i + 16} n={i + 16}><P>{s.toLowerCase()}</P> = <N>true</N></Line>
-            ))}
-        </div>
-    );
+    const clusters: SkillCluster[] = ['fullstack', 'ai', 'aerospace', 'embedded'];
+    let n = 2;
+    const lines: React.ReactNode[] = [
+        <Line key={1} n={1} c="comment">{'# skills.toml — proficiency is 0-100, measured in shipped things'}</Line>,
+    ];
+    clusters.forEach(cluster => {
+        lines.push(<Line key={`s${n}`} n={n++} />);
+        lines.push(<Line key={`h${n}`} n={n++}>[<V>{clusterLabels[cluster].toLowerCase().replace(/[^a-z]+/g, '_')}</V>]</Line>);
+        skills.filter(s => s.cluster === cluster)
+            .sort((a, b) => b.proficiency - a.proficiency)
+            .slice(0, 5)
+            .forEach(s => {
+                lines.push(
+                    <Line key={s.id} n={n++}>
+                        <P>{s.id}</P> = {'{ '}<P>proficiency</P> = <N>{s.proficiency}</N>{' }'}
+                    </Line>
+                );
+            });
+    });
+    return <div className="space-y-1">{lines}</div>;
 }
 
 function renderAchievements() {
@@ -111,7 +121,7 @@ function renderAchievements() {
             <Line n={2} />
             {achievements.map((a, i) => (
                 <div key={i}>
-                    <Line n={3 + i * 3}>## 🏆 {a.title}</Line>
+                    <Line n={3 + i * 3}>## <K>{a.rank}</K> — {a.title}</Line>
                     <Line n={4 + i * 3} c="comment">{a.description}</Line>
                     <Line n={5 + i * 3} />
                 </div>
@@ -149,9 +159,11 @@ function renderReadme() {
             <Line n={10} />
             <Line n={11}>## Connect</Line>
             <Line n={12} />
-            <Line n={13}>- 📧 [{personalInfo.email}](mailto:{personalInfo.email})</Line>
-            <Line n={14}>- 🐙 [GitHub](https://github.com/AAGAM17)</Line>
-            <Line n={15}>- 💼 [LinkedIn](https://linkedin.com/in/aagamshah)</Line>
+            <Line n={13}>- [Email](mailto:{personalInfo.email}) — fastest channel</Line>
+            <Line n={14}>- [GitHub](https://github.com/AAGAM17)</Line>
+            <Line n={15}>- [LinkedIn](https://linkedin.com/in/aagamshah)</Line>
+            <Line n={16} />
+            <Line n={17} c="comment">{'<!-- psst: open the Terminal menu -->'}</Line>
         </div>
     );
 }
@@ -181,10 +193,21 @@ function S({ children }: { children: React.ReactNode }) { return <span className
 function P({ children }: { children: React.ReactNode }) { return <span className="text-[#9cdcfe]">{children}</span>; }
 function N({ children }: { children: React.ReactNode }) { return <span className="text-[#b5cea8]">{children}</span>; }
 
+const TERMINAL_LINES = [
+    { prompt: true, text: 'aagam --version' },
+    { prompt: false, text: 'aagam-shah v21.0.0 (mumbai-build) — stable since 2005' },
+    { prompt: true, text: 'npm run hire-aagam' },
+    { prompt: false, text: '> portfolio@3.0.0 hire-aagam' },
+    { prompt: false, text: '> open mailto:aagamcshah172005@gmail.com' },
+    { prompt: false, text: '✓ Compiled successfully. Response time: fast.' },
+    { prompt: true, text: '' },
+];
+
 export default function VSCodeTheme() {
     const [activeFile, setActiveFile] = useState('readme');
     const [openTabs, setOpenTabs] = useState<string[]>(['readme']);
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [terminalOpen, setTerminalOpen] = useState(false);
 
     const openFile = (id: string) => {
         setActiveFile(id);
@@ -224,7 +247,7 @@ export default function VSCodeTheme() {
                 <span className="hover:text-white cursor-pointer">View</span>
                 <span className="hover:text-white cursor-pointer">Go</span>
                 <span className="hover:text-white cursor-pointer">Run</span>
-                <span className="hover:text-white cursor-pointer">Terminal</span>
+                <button onClick={() => setTerminalOpen(!terminalOpen)} className={`hover:text-white cursor-pointer ${terminalOpen ? 'text-white' : ''}`}>Terminal</button>
                 <span className="hover:text-white cursor-pointer">Help</span>
             </div>
 
@@ -262,7 +285,7 @@ export default function VSCodeTheme() {
                                             className={`w-full text-left flex items-center gap-2 px-2 py-1 rounded text-[12px] transition-colors ${activeFile === f.id ? 'bg-[#37373d] text-white' : 'text-gray-400 hover:bg-[#2a2d32] hover:text-gray-200'
                                                 }`}
                                         >
-                                            <span className="text-xs">{f.icon}</span>
+                                            <FileBadge file={f} />
                                             <span>{f.name}</span>
                                         </button>
                                     ))}
@@ -287,7 +310,7 @@ export default function VSCodeTheme() {
                                         : 'bg-[#2d2d2d] text-gray-500 hover:bg-[#2a2d32] border-t-2 border-t-transparent'
                                         }`}
                                 >
-                                    <span className="text-xs">{file?.icon}</span>
+                                    <FileBadge file={file} />
                                     <span>{file?.name}</span>
                                     <span onClick={(e) => closeTab(tab, e)} className="ml-1 hover:bg-gray-600 rounded p-0.5 text-[10px] leading-none">✕</span>
                                 </button>
@@ -305,12 +328,43 @@ export default function VSCodeTheme() {
                         {render ? render() : (
                             <div className="flex items-center justify-center h-full text-gray-600 text-sm">
                                 <div className="text-center">
-                                    <p className="text-4xl mb-4">⌨️</p>
+                                    <p className="text-2xl mb-3 font-bold text-gray-700">{'</>'}</p>
                                     <p>Select a file to view</p>
                                 </div>
                             </div>
                         )}
                     </div>
+
+                    {/* Integrated Terminal */}
+                    <AnimatePresence>
+                        {terminalOpen && (
+                            <motion.div
+                                initial={{ height: 0 }}
+                                animate={{ height: 170 }}
+                                exit={{ height: 0 }}
+                                className="bg-[#181818] border-t border-[#2d2d2d] overflow-hidden shrink-0"
+                            >
+                                <div className="flex items-center justify-between px-4 h-8 text-[10px] text-gray-500 uppercase tracking-wider border-b border-[#2d2d2d]">
+                                    <div className="flex gap-4">
+                                        <span className="text-white border-b border-white pb-2 -mb-2">Terminal</span>
+                                        <span className="hover:text-gray-300 cursor-pointer">Problems <span className="text-gray-600">0</span></span>
+                                        <span className="hover:text-gray-300 cursor-pointer">Output</span>
+                                    </div>
+                                    <button onClick={() => setTerminalOpen(false)} className="hover:text-white">✕</button>
+                                </div>
+                                <div className="p-3 text-[12px] leading-relaxed font-mono overflow-y-auto h-[130px]">
+                                    {TERMINAL_LINES.map((l, i) => (
+                                        <div key={i} className={l.prompt ? 'text-gray-300' : 'text-gray-500'}>
+                                            {l.prompt && <span className="text-[#4ec9b0]">aagam@portfolio</span>}
+                                            {l.prompt && <span className="text-gray-600"> ~ % </span>}
+                                            {l.text}
+                                            {l.prompt && !l.text && <span className="inline-block w-1.5 h-3.5 bg-gray-400 align-middle animate-pulse" />}
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
 
                 {/* Minimap (desktop only) */}
@@ -328,16 +382,18 @@ export default function VSCodeTheme() {
             </div>
 
             {/* Status Bar */}
-            <div className="h-6 bg-[#007acc] flex items-center justify-between px-3 text-[11px] text-white/80 shrink-0">
+            <div className="h-6 bg-[#007acc] flex items-center justify-between px-3 text-[11px] text-white/85 shrink-0">
                 <div className="flex items-center gap-3">
-                    <span>⚡ main</span>
-                    <span>0 ⚠ 0 ✕</span>
+                    <span>⎇ main*</span>
+                    <span>0 errors</span>
+                    <button onClick={() => setTerminalOpen(!terminalOpen)} className="hover:bg-white/10 px-1.5 rounded">∑ Terminal</button>
                 </div>
                 <div className="flex items-center gap-3">
-                    <span>{FILES.find(f => f.id === activeFile)?.name === 'about.ts' ? 'TypeScript' : 'Plaintext'}</span>
+                    <span>{activeFile === 'about' ? 'TypeScript' : activeFile === 'projects' ? 'JSON' : activeFile === 'experience' ? 'YAML' : activeFile === 'skills' ? 'TOML' : 'Markdown'}</span>
                     <span>UTF-8</span>
                     <span>LF</span>
-                    <span>Ln 1, Col 1</span>
+                    <span className="hidden sm:inline">Veda: online</span>
+                    <span>Prettier ✓</span>
                 </div>
             </div>
         </div>

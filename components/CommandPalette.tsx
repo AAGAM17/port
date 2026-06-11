@@ -57,7 +57,7 @@ export default function CommandPalette() {
     const allItems = [
         ...filtered,
         ...(!filtered.find(f => f.href === '/terminal') && 'terminal'.includes(query.toLowerCase())
-            ? [{ href: '/terminal', label: 'TERMINAL', code: 'SYS.TTY' }]
+            ? [{ href: '/terminal', label: 'TERMINAL', code: '~/tty' }]
             : []),
     ];
 
@@ -119,7 +119,7 @@ export default function CommandPalette() {
             {/* Floating trigger hint */}
             <button
                 onClick={() => { setOpen(true); setQuery(''); setSelectedIndex(0); }}
-                className="fixed bottom-6 right-6 z-30 hidden md:flex items-center gap-2 px-3 py-2 text-[10px] font-mono text-gray-600 bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-lg hover:border-gray-700 hover:text-gray-400 transition-all"
+                className="fixed bottom-6 left-6 z-30 hidden md:flex items-center gap-2 px-3 py-2 text-[10px] font-mono text-gray-600 bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-lg hover:border-gray-700 hover:text-gray-400 transition-all"
             >
                 <Command size={11} />
                 <span>K</span>

@@ -54,7 +54,7 @@ export function Navbar() {
                         <Link href="/" className="flex items-center gap-3 group">
                             <StatusIndicator status="online" />
                             <span className="font-mono text-sm tracking-[0.15em] text-gray-300 group-hover:text-cyan-400 transition-colors">
-                                AAGAM.SYS
+                                AAGAM SHAH
                             </span>
                             <span className="hidden sm:inline text-xs font-mono text-gray-600">v2.0</span>
                         </Link>

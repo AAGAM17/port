@@ -30,10 +30,12 @@
     --color-rose-400: #fb7185;
     --color-rose-500: #f43f5e;
 
-    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     --font-serif: 'Playfair Display', Georgia, serif;
-    --font-grotesk: 'Space Grotesk', system-ui, sans-serif;
+    --font-grotesk: 'Chakra Petch', system-ui, sans-serif;
+    --font-editorial: 'Fraunces', Georgia, serif;
+    --font-reader: 'Newsreader', Georgia, serif;
 }
 
 /* === BASE === */
@@ -338,6 +340,149 @@ body {
     background: #34d399;
     box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
     animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* === INTRO GATE (power-on reveal) === */
+
+@keyframes intro-line {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes intro-wordmark {
+    0% {
+        clip-path: inset(0 0 100% 0);
+        transform: translateY(8px);
+    }
+
+    100% {
+        clip-path: inset(0 0 0% 0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes intro-exit {
+    0% {
+        clip-path: inset(0 0 0 0);
+    }
+
+    100% {
+        clip-path: inset(0 0 100% 0);
+    }
+}
+
+.intro-line {
+    transform-origin: center;
+    animation: intro-line 0.4s cubic-bezier(0.83, 0, 0.17, 1) forwards;
+}
+
+.intro-wordmark {
+    animation: intro-wordmark 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.intro-exit {
+    animation: intro-exit 0.5s cubic-bezier(0.83, 0, 0.17, 1) forwards;
+}
+
+/* === VEDA (assistant) === */
+
+@keyframes veda-orb-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes veda-breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+@keyframes veda-halo {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.9);
+        opacity: 0;
+    }
+}
+
+@keyframes veda-bar {
+
+    0%,
+    100% {
+        transform: scaleY(0.3);
+    }
+
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.veda-orb-core {
+    background:
+        radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 22%),
+        conic-gradient(from 200deg, #22d3ee, #818cf8, #c084fc, #22d3ee);
+    animation: veda-breathe 4.5s ease-in-out infinite;
+}
+
+.veda-orb-core.speaking {
+    animation: veda-breathe 0.9s ease-in-out infinite;
+}
+
+.veda-ring {
+    animation: veda-orb-spin 9s linear infinite;
+}
+
+.veda-halo {
+    animation: veda-halo 1.6s ease-out infinite;
+}
+
+.veda-bar {
+    transform-origin: bottom;
+    animation: veda-bar 0.8s ease-in-out infinite;
+}
+
+/* === REDUCED MOTION === */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .intro-line,
+    .intro-wordmark,
+    .intro-exit,
+    .animate-radar,
+    .animate-scan-line,
+    .veda-ring,
+    .veda-halo {
+        animation-duration: 0.01s !important;
+        animation-iteration-count: 1 !important;
+    }
 }
 
 /* Noise overlay */

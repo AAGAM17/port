@@ -8,11 +8,16 @@ import MacOSTheme from './MacOSTheme';
 import Win95Theme from './Win95Theme';
 import NewspaperTheme from './NewspaperTheme';
 import VSCodeTheme from './VSCodeTheme';
+import GenericTheme from './GenericTheme';
+import GalaxyTheme from './GalaxyTheme';
+import VedaAssistant from '@/components/assistant/VedaAssistant';
 
 function ThemeOverlay() {
     const { theme } = useTheme();
 
     switch (theme) {
+        case 'galaxy': return <GalaxyTheme />;
+        case 'generic': return <GenericTheme />;
         case 'google': return <GoogleTheme />;
         // case 'macos': return <MacOSTheme />;
         // case 'win95': return <Win95Theme />;
@@ -42,6 +47,9 @@ function ThemeContent({ children }: { children: ReactNode }) {
 
             {/* Theme switcher FAB — always visible */}
             <ThemeSwitcher />
+
+            {/* Veda — Aagam's personal AI assistant, available in every theme */}
+            <VedaAssistant />
         </>
     );
 }

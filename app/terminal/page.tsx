@@ -47,7 +47,7 @@ const THEMES: Record<string, { name: string; primary: string; bg: string; accent
 export default function TerminalPage() {
     const [history, setHistory] = useState<OutputLine[]>([
         { type: 'ascii', content: '  ╔══════════════════════════════════════════════════╗' },
-        { type: 'ascii', content: '  ║       AAGAM.SYS TERMINAL v3.1                   ║' },
+        { type: 'ascii', content: '  ║       AAGAM SHAH — TERMINAL v3.1                   ║' },
         { type: 'ascii', content: '  ║       Welcome, Operator.                         ║' },
         { type: 'ascii', content: '  ╚══════════════════════════════════════════════════╝' },
         { type: 'system', content: '' },
@@ -242,7 +242,7 @@ export default function TerminalPage() {
             typeLines(
                 `       ╱╲          aagam@aagam-sys
       ╱  ╲         ─────────────────
-     ╱    ╲        OS:     AAGAM.SYS v3.1
+     ╱    ╲        OS:     aagamOS 3.1 LTS
     ╱  ╱╲  ╲       Host:   Mumbai, India
    ╱  ╱  ╲  ╲      Kernel: Deep Tech
   ╱  ╱    ╲  ╲     Shell:  TypeScript + Python

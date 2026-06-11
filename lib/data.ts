@@ -78,8 +78,8 @@ export interface Testimonial {
 
 export const personalInfo = {
     name: 'Aagam Shah',
-    role: 'Full Stack Developer × AI/ML Engineer × Systems Architect',
-    tagline: 'Building at the intersection of AI, Autonomous Systems & Deep Tech',
+    role: 'Full-Stack Developer · AI Engineer · UAV Software Lead',
+    tagline: 'Web apps, AI products, and autonomous aircraft — built end to end.',
     location: 'Mumbai, MH (open to relocate)',
     phone: '+91 7715018407',
     email: 'aagamcshah172005@gmail.com',
@@ -92,16 +92,16 @@ export const personalInfo = {
         period: 'Aug 2023 — May 2027',
         location: 'Mumbai, MH',
     },
-    bio: 'Building at the intersection of AI, autonomous systems, and deep tech. I turn complex engineering problems into elegant, working systems from multi-UAV swarms to production AI SaaS platforms.',
+    bio: 'Mumbai engineer who ships. I\'ve built AI SaaS platforms end to end, automated away 60-hour workweeks, and written the computer-vision landing system behind a top-10 world ranking at SAE Aero Design 2025.',
 };
 
 // === SYSTEM METRICS (Landing) ===
 
 export const systemMetrics = [
-    { label: 'PROJECTS SHIPPED', value: '10', unit: '+', icon: 'Rocket' },
-    { label: 'LINES DELIVERED', value: '100', unit: 'K+', icon: 'Code' },
-    { label: 'HACKATHONS', value: '6', unit: '+', icon: 'Trophy' },
-    { label: 'GLOBAL RANKINGS', value: '3', unit: '', icon: 'Globe' },
+    { label: 'PRODUCTS SHIPPED', value: '10', unit: '+', icon: 'Rocket' },
+    { label: 'SAE AERO · WORLD RANK', value: '#7', unit: '', icon: 'Globe' },
+    { label: 'LINES IN PRODUCTION', value: '100', unit: 'K+', icon: 'Code' },
+    { label: 'HACKATHON FINISHES', value: '6', unit: '+', icon: 'Trophy' },
 ];
 
 // === PROJECTS (REAL) ===
@@ -452,7 +452,7 @@ Available commands:
   linkedin     Open LinkedIn profile
   resume       Download resume / CV
   clear        Clear terminal (or Ctrl+L)
-  exit         Return to AAGAM.SYS
+  exit         Return to the homepage
 
   sudo hire-me   🚀
   matrix         Try it ;)
@@ -514,7 +514,7 @@ Wake up, Neo...
 The Matrix has you...
 Follow the white rabbit.
 
-🐇 Just kidding — but my autonomus drones ARE the Matrix.
+🐇 Just kidding — but my autonomous drones ARE the Matrix.
   `,
     launch: `
 🚀 LAUNCH SEQUENCE INITIATED
@@ -546,7 +546,7 @@ export const testimonials: Testimonial[] = [
         name: 'Swarali Pednekar',
         role: 'Team Mate',
         company: '',
-        quote: 'Working with Aagam in a team is a wonderful experience. We have been a part of a hackathon and Aagam played a very important role in our team. His skills in the field of Computer are exceptional, along with his good communication skills. He is always true to his words and decicated towards every task he takes in hand.',
+        quote: 'Working with Aagam in a team is a wonderful experience. We have been a part of a hackathon and Aagam played a very important role in our team. His skills in the field of Computer are exceptional, along with his good communication skills. He is always true to his words and dedicated towards every task he takes in hand.',
         avatar: 'SP',
     },
     {
@@ -570,11 +570,11 @@ export const testimonials: Testimonial[] = [
 // === NAV LINKS ===
 
 export const navLinks = [
-    { href: '/', label: 'HOME', code: 'SYS.HOME' },
-    { href: '/projects', label: 'PROJECTS', code: 'SYS.LAB' },
-    { href: '/skills', label: 'SKILLS', code: 'SYS.NET' },
-    { href: '/achievements', label: 'ACHIEVEMENTS', code: 'SYS.LOG' },
-    { href: '/experience', label: 'EXPERIENCE', code: 'SYS.EXP' },
-    { href: '/vision', label: 'VISION', code: 'SYS.FWD' },
-    { href: '/contact', label: 'CONTACT', code: 'SYS.COM' },
+    { href: '/', label: 'HOME', code: '~/' },
+    { href: '/projects', label: 'PROJECTS', code: '~/projects' },
+    { href: '/skills', label: 'SKILLS', code: '~/skills' },
+    { href: '/achievements', label: 'ACHIEVEMENTS', code: '~/achievements' },
+    { href: '/experience', label: 'EXPERIENCE', code: '~/experience' },
+    { href: '/vision', label: 'VISION', code: '~/vision' },
+    { href: '/contact', label: 'CONTACT', code: '~/contact' },
 ];

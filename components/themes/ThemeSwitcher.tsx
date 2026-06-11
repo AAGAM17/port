@@ -11,22 +11,21 @@ export default function ThemeSwitcher() {
 
     return (
         <>
-            {/* Floating Action Button */}
+            {/* Floating Action Button — stacked above Veda's orb */}
             <motion.button
                 onClick={() => setOpen(true)}
-                className="fixed bottom-20 right-6 z-[9998] w-12 h-12 rounded-full flex items-center justify-center shadow-2xl transition-all group"
+                className="fixed bottom-[5.9rem] right-[26px] z-[9989] w-11 h-11 rounded-full flex items-center justify-center shadow-2xl transition-all group"
                 style={{
-                    background: theme === 'default'
-                        ? 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)'
-                        : 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+                    background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
                     border: `1px solid ${THEMES.find(t => t.id === theme)?.color || '#22d3ee'}40`,
                 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                title="Switch Theme"
+                title="Switch theme"
+                aria-label="Switch theme"
             >
-                <Palette size={18} className="text-white/80 group-hover:text-white transition-colors" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: THEMES.find(t => t.id === theme)?.color }} />
+                <Palette size={17} className="text-white/80 group-hover:text-white transition-colors" />
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: THEMES.find(t => t.id === theme)?.color }} />
             </motion.button>
 
             {/* Theme Picker Modal */}
@@ -48,7 +47,7 @@ export default function ThemeSwitcher() {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                            className="fixed z-[10000] bottom-24 right-6 w-[360px] max-h-[80vh] overflow-y-auto rounded-2xl bg-[#0f172a] border border-white/10 shadow-2xl"
+                            className="fixed z-[10000] bottom-24 right-5 left-5 sm:left-auto sm:w-[360px] max-h-[80vh] overflow-y-auto rounded-2xl bg-[#0f172a] border border-white/10 shadow-2xl"
                         >
                             <div className="p-5">
                                 <div className="flex items-center justify-between mb-4">
@@ -71,7 +70,7 @@ export default function ThemeSwitcher() {
                                                 : 'hover:bg-white/5 border border-transparent'
                                                 }`}
                                         >
-                                            <span className="text-2xl w-10 h-10 flex items-center justify-center rounded-lg" style={{ backgroundColor: `${t.color}15` }}>
+                                            <span className="w-10 h-10 flex items-center justify-center rounded-lg text-sm font-bold font-mono" style={{ backgroundColor: `${t.color}18`, color: t.color }}>
                                                 {t.icon}
                                             </span>
                                             <div className="flex-1 min-w-0">
