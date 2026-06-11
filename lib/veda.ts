@@ -1,6 +1,6 @@
 import {
     personalInfo, projects, skills, experiences, achievements,
-    visionIdeas, testimonials, clusterLabels, SkillCluster,
+    visionIdeas, clusterLabels, SkillCluster,
 } from './data';
 
 /* ═══════════════════════════════════════
@@ -227,14 +227,11 @@ const INTENTS: Intent[] = [
     // Testimonials
     {
         match: /testimonial|people say|reference|reviews|opinion|colleagues|recommend/i,
-        reply: () => {
-            const t = pick(testimonials);
-            return {
-                text: `Here's one from ${t.name}${t.company ? ` (${t.role}, ${t.company})` : ` (${t.role})`}:\n\n"${t.quote}"\n\nThere are more on the home page — all real people, all worked with him.`,
-                speech: `${t.name} said: ${t.quote}`,
-                chips: ['Another testimonial', 'Why hire him?', 'Contact him'],
-            };
-        },
+        reply: () => ({
+            text: `The testimonials on this site are live — real people who worked with ${firstName} submit them right here, and each one is personally approved by him before it appears. No fakes, no filler.\n\nScroll to the Testimonials section on the home page to read them — or to leave one yourself.`,
+            speech: `The testimonials here are live. Real people submit them on the site, and Aagam personally approves each one before it appears. You'll find them on the home page — and you can leave one yourself.`,
+            chips: ['Why hire him?', 'His achievements', 'Contact him'],
+        }),
     },
     // Fun fact
     {

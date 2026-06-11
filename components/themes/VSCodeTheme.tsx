@@ -373,7 +373,7 @@ export default function VSCodeTheme() {
                         {Array.from({ length: 40 }).map((_, i) => (
                             <div key={i} className="h-[2px] rounded-full" style={{
                                 backgroundColor: i % 7 === 0 ? '#6a9955' : i % 5 === 0 ? '#c586c0' : i % 3 === 0 ? '#ce9178' : '#d4d4d4',
-                                width: `${Math.random() * 60 + 20}%`,
+                                width: `${20 + ((i * 37) % 61)}%`,
                             }} />
                         ))}
                     </div>

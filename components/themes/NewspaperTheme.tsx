@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { personalInfo, projects, experiences, achievements, testimonials } from '@/lib/data';
+import { personalInfo, projects, experiences, achievements } from '@/lib/data';
 
 /* ═══════════════════════════════════════
    THE DAILY AAGAM — NEWSPAPER THEME v2
@@ -103,14 +103,12 @@ export default function NewspaperTheme() {
                         </div>
 
                         {/* Pull Quote */}
-                        {testimonials[0] && (
-                            <div className="border-t-2 border-b-2 border-black py-4 mb-5">
-                                <p className="text-[15px] italic leading-relaxed" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#2a2a2a' }}>
-                                    &ldquo;{testimonials[0].quote.length > 150 ? testimonials[0].quote.slice(0, 150) + '...' : testimonials[0].quote}&rdquo;
-                                </p>
-                                <p className="text-[10px] uppercase tracking-[0.15em] mt-2" style={{ color: '#888' }}>— {testimonials[0].name}, {testimonials[0].role}</p>
-                            </div>
-                        )}
+                        <div className="border-t-2 border-b-2 border-black py-4 mb-5">
+                            <p className="text-[15px] italic leading-relaxed" style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#2a2a2a' }}>
+                                &ldquo;{achievements[0]?.quote ?? 'Slide decks don\'t fly.'}&rdquo;
+                            </p>
+                            <p className="text-[10px] uppercase tracking-[0.15em] mt-2" style={{ color: '#888' }}>— Pinned above the engineer&apos;s desk</p>
+                        </div>
 
                         {/* Weather-style info box */}
                         <div className="border-2 border-black p-3 text-center">

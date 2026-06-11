@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { personalInfo, navLinks } from '@/lib/data';
-import { cn } from '@/lib/utils';
 import { ArrowLeft, Zap, Send, Mail, Github, Linkedin, Phone, Copy, Check, ExternalLink } from 'lucide-react';
 
 /* ═══════════════════════════════════════
@@ -21,7 +20,18 @@ const channels = [
 
 export default function ContactPage() {
     const [copied, setCopied] = useState<string | null>(null);
-    const [formSent, setFormSent] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+    const [opened, setOpened] = useState(false);
+
+    const sendViaEmail = (e: React.FormEvent) => {
+        e.preventDefault();
+        const body = `${message}\n\n— ${name}${email ? ` (${email})` : ''}`;
+        window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        setOpened(true);
+    };
 
     const copyToClipboard = (text: string, label: string) => {
         navigator.clipboard.writeText(text);
@@ -95,23 +105,25 @@ export default function ContactPage() {
             {/* Contact Form */}
             <section className="relative z-10 max-w-2xl mx-auto px-6 pb-24">
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                    <span className="text-[10px] font-mono tracking-[0.4em] text-gray-700 block mb-4">DIRECT TRANSMISSION</span>
+                    <span className="text-[10px] font-mono tracking-[0.4em] text-gray-700 block mb-4">WRITE TO ME</span>
                     <div className="p-8 border border-emerald-400/10 rounded-xl bg-[#040d07]/60">
-                        {formSent ? (
-                            <div className="text-center py-12"><div className="w-12 h-12 rounded-full bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center mx-auto mb-4"><Check size={20} className="text-emerald-400" /></div><h3 className="text-lg font-bold mb-2">Message Transmitted</h3><p className="text-sm text-gray-500">I&apos;ll get back to you soon.</p></div>
-                        ) : (
-                            <form onSubmit={(e) => { e.preventDefault(); setFormSent(true); }} className="space-y-5">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div><label className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">CALLSIGN</label><input type="text" required placeholder="Your name" className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono" /></div>
-                                    <div><label className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">FREQUENCY</label><input type="email" required placeholder="your@email.com" className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono" /></div>
-                                </div>
-                                <div><label className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">SUBJECT</label><input type="text" required placeholder="What's on your mind?" className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono" /></div>
-                                <div><label className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">MESSAGE</label><textarea required rows={5} placeholder="Type your message..." className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono resize-none" /></div>
-                                <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 text-sm font-mono tracking-[0.15em] text-emerald-400 border border-emerald-400/30 bg-emerald-400/5 rounded-lg hover:bg-emerald-400/10 transition-all">
-                                    <Send size={14} /> TRANSMIT MESSAGE
-                                </button>
-                            </form>
-                        )}
+                        <form onSubmit={sendViaEmail} className="space-y-5">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div><label htmlFor="c-name" className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">NAME</label><input id="c-name" type="text" required value={name} onChange={e => setName(e.target.value)} placeholder="Your name" className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono" /></div>
+                                <div><label htmlFor="c-email" className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">EMAIL</label><input id="c-email" type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono" /></div>
+                            </div>
+                            <div><label htmlFor="c-subject" className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">SUBJECT</label><input id="c-subject" type="text" required value={subject} onChange={e => setSubject(e.target.value)} placeholder="What's on your mind?" className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono" /></div>
+                            <div><label htmlFor="c-message" className="text-[10px] font-mono text-gray-600 tracking-wider block mb-2">MESSAGE</label><textarea id="c-message" required rows={5} value={message} onChange={e => setMessage(e.target.value)} placeholder="Type your message..." className="w-full bg-transparent border border-emerald-400/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-gray-700 focus:border-emerald-400/30 focus:outline-none transition-colors font-mono resize-none" /></div>
+                            <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 text-sm font-mono tracking-[0.15em] text-emerald-400 border border-emerald-400/30 bg-emerald-400/5 rounded-lg hover:bg-emerald-400/10 transition-all">
+                                <Send size={14} /> SEND VIA YOUR EMAIL APP
+                            </button>
+                            {opened && (
+                                <p className="text-xs text-gray-500 text-center flex items-center justify-center gap-1.5">
+                                    <Check size={12} className="text-emerald-400" />
+                                    Your email app should have opened — if it didn&apos;t, write directly to {personalInfo.email}.
+                                </p>
+                            )}
+                        </form>
                     </div>
                 </motion.div>
             </section>

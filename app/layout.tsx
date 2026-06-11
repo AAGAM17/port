@@ -4,12 +4,12 @@ import CommandPalette from '@/components/CommandPalette';
 import ThemeLayout from '@/components/themes/ThemeLayout';
 
 export const metadata: Metadata = {
-    title: 'Aagam Shah | Full Stack × AI × Deep Tech',
-    description: 'Portfolio of Aagam Shah — Full Stack Developer, AI/ML Engineer, and Systems Architect building at the intersection of autonomous intelligence and deep tech.',
-    keywords: ['Aagam Shah', 'Full Stack Developer', 'AI Engineer', 'Aerospace', 'SAE Aero Design', 'Portfolio'],
+    title: 'Aagam Shah — Full-Stack & AI Engineer',
+    description: 'Full-stack and AI engineer in Mumbai. Shipped AI SaaS platforms end to end, automated away 60-hour workweeks, and wrote the computer-vision landing system behind a top-10 world ranking at SAE Aero Design 2025.',
+    keywords: ['Aagam Shah', 'Full Stack Developer', 'AI Engineer', 'Aerospace', 'SAE Aero Design', 'Portfolio', 'Mumbai'],
     openGraph: {
-        title: 'Aagam Shah | Full Stack × AI × Deep Tech',
-        description: 'Building the future of autonomous intelligence.',
+        title: 'Aagam Shah — Full-Stack & AI Engineer',
+        description: 'Web apps, AI products, and autonomous aircraft — built end to end.',
         type: 'website',
     },
 };

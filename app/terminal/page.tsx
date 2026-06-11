@@ -158,8 +158,7 @@ export default function TerminalPage() {
             return;
         }
         if (trimmed === 'resume' || trimmed === 'cv') {
-            addLines([{ type: 'system', content: '> Opening resume...' }]);
-            window.open('/resume.pdf', '_blank');
+            addLines([{ type: 'system', content: '> Resume available on request — email aagamcshah172005@gmail.com' }]);
             return;
         }
 

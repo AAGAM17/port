@@ -128,8 +128,8 @@ function GalaxyCanvas() {
     const hoveredRef = useRef<string | null>(null);
     const [hovered, setHovered] = useState<Hovered | null>(null);
 
-    const { dust, nebulae } = useMemo(buildGalaxy, []);
-    const skillStars = useMemo(buildSkillStars, []);
+    const { dust, nebulae } = useMemo(() => buildGalaxy(), []);
+    const skillStars = useMemo(() => buildSkillStars(), []);
 
     useEffect(() => {
         const canvas = canvasRef.current;

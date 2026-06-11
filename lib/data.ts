@@ -47,15 +47,6 @@ export interface Experience {
     type: 'work' | 'research' | 'leadership';
 }
 
-export interface TimelineEvent {
-    id: string;
-    year: string;
-    title: string;
-    description: string;
-    category: string;
-    icon: string;
-}
-
 export interface VisionIdea {
     id: string;
     title: string;
@@ -63,15 +54,6 @@ export interface VisionIdea {
     solution: string;
     impact: string;
     status: 'exploring' | 'building' | 'launched';
-}
-
-export interface Testimonial {
-    id: string;
-    name: string;
-    role: string;
-    company: string;
-    quote: string;
-    avatar: string;
 }
 
 // === PERSONAL INFO ===
@@ -85,7 +67,6 @@ export const personalInfo = {
     email: 'aagamcshah172005@gmail.com',
     github: 'https://github.com/AAGAM17',
     linkedin: 'https://linkedin.com/in/aagamshah',
-    resume: '/resume.pdf',
     education: {
         college: "SVKM's Dwarkadas J. Sanghvi College of Engineering",
         degree: 'B.Tech in Mechanical Engineering',
@@ -101,7 +82,7 @@ export const systemMetrics = [
     { label: 'PRODUCTS SHIPPED', value: '10', unit: '+', icon: 'Rocket' },
     { label: 'SAE AERO · WORLD RANK', value: '#7', unit: '', icon: 'Globe' },
     { label: 'LINES IN PRODUCTION', value: '100', unit: 'K+', icon: 'Code' },
-    { label: 'HACKATHON FINISHES', value: '6', unit: '+', icon: 'Trophy' },
+    { label: 'HACKATHON RANKINGS', value: '6', unit: '+', icon: 'Trophy' },
 ];
 
 // === PROJECTS (REAL) ===
@@ -371,21 +352,6 @@ export const experiences: Experience[] = [
     },
 ];
 
-// === TIMELINE ===
-
-export const timeline: TimelineEvent[] = [
-    { id: 't1', year: '2021', title: 'Started Coding', description: 'Began programming journey at Jai Hind College. Explored web development, Python, and built first projects.', category: 'coding', icon: '💻' },
-    { id: 't2', year: '2023', title: 'Engineering Begins', description: 'Joined SVKM\'s DJ Sanghvi College of Engineering for B.Tech in Mechanical Engineering.', category: 'education', icon: '🎓' },
-    { id: 't3', year: '2023', title: 'DJS Skylark — SAE Aero', description: 'Joined SAE Aero Design team. Started working on avionics, propulsion, and autonomous systems.', category: 'aerospace', icon: '✈️' },
-    { id: 't4', year: '2023', title: 'Smart India Hackathon', description: 'Led team to 6th Rank Nationwide — Ministry of Defence problem statement.', category: 'hackathon', icon: '🏅' },
-    { id: 't5', year: '2024', title: 'App Dev Internship', description: 'Built cross-platform mobile apps at Webxella using Flutter and AI integration.', category: 'work', icon: '📱' },
-    { id: 't6', year: '2024', title: 'AI Engineering Internship', description: 'Delivered 15,000+ lines of production code at Serenovolante. Built LLM features and CV systems.', category: 'work', icon: '🤖' },
-    { id: 't7', year: '2025', title: 'SAE Aero Design — Global Rankings', description: '7th Worldwide Overall, 2nd Worldwide Oral Presentation, 11th Design Report in Advanced Class.', category: 'aerospace', icon: '🌍' },
-    { id: 't8', year: '2025', title: 'Advanced Class Head', description: 'Became Advanced Class Head & Coding Head for DJS Skylark. Leading all software dev pipelines.', category: 'leadership', icon: '👨‍✈️' },
-    { id: 't9', year: '2025', title: 'Freelancing & Startups', description: 'Shipping cross-platform apps at Fyre Gig. Building AI SaaS products and startup MVPs.', category: 'startup', icon: '⚡' },
-    { id: 't10', year: '2025', title: 'Hackathon Streak', description: '2nd at CodeClash (NutriMind), 7th at SynapHack 3.0 (AI Hackathon Platform).', category: 'hackathon', icon: '🏆' },
-];
-
 // === VISION IDEAS ===
 
 export const visionIdeas: VisionIdea[] = [
@@ -450,7 +416,7 @@ Available commands:
 
   github       Open GitHub profile
   linkedin     Open LinkedIn profile
-  resume       Download resume / CV
+  resume       Request resume / CV
   clear        Clear terminal (or Ctrl+L)
   exit         Return to the homepage
 
@@ -495,7 +461,7 @@ I ship complex engineering into elegant systems.
 📞  Phone:    +91 7715018407
 🐙  GitHub:   github.com/AAGAM17
 💼  LinkedIn: linkedin.com/in/aagamshah
-📄  Resume:   /resume.pdf
+📄  Resume:   available on request
   `,
     'sudo hire-me': `
 🚀 LAUNCHING RECRUITMENT SEQUENCE...
@@ -529,43 +495,6 @@ Aagam has left the atmosphere.
 Next stop: your engineering team.
   `,
 };
-
-// === TESTIMONIALS ===
-
-export const testimonials: Testimonial[] = [
-    {
-        id: 't1',
-        name: 'Ayush Suri',
-        role: 'Engineering Manager',
-        company: 'Fyre Gig',
-        quote: 'Aagam delivered production-grade code at a pace I haven\'t seen from most senior engineers. His AI automation work saved us 60+ hours weekly.',
-        avatar: 'AS',
-    },
-    {
-        id: 't2',
-        name: 'Swarali Pednekar',
-        role: 'Team Mate',
-        company: '',
-        quote: 'Working with Aagam in a team is a wonderful experience. We have been a part of a hackathon and Aagam played a very important role in our team. His skills in the field of Computer are exceptional, along with his good communication skills. He is always true to his words and dedicated towards every task he takes in hand.',
-        avatar: 'SP',
-    },
-    {
-        id: 't3',
-        name: 'Shammanth Padpu',
-        role: 'Client',
-        company: 'PlanMyTodo',
-        quote: 'As Advanced Class Head and Coding Lead, Aagam elevated our entire team. His flight control algorithms were pivotal to our global rankings.',
-        avatar: 'SP',
-    },
-    {
-        id: 't4',
-        name: 'Kavya Sharma',
-        role: 'Product Designer',
-        company: 'Webxella',
-        quote: 'Aagam has an unusual gift — deep engineering skill paired with genuine design taste. Everything he builds feels premium.',
-        avatar: 'KS',
-    },
-];
 
 // === NAV LINKS ===
 

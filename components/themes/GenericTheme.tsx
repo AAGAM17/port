@@ -5,8 +5,9 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import {
     personalInfo, projects, experiences, achievements, skills,
-    testimonials, clusterLabels, SkillCluster,
+    clusterLabels, SkillCluster,
 } from '@/lib/data';
+import { useApprovedTestimonials } from '@/components/testimonials/Testimonials';
 import { cn } from '@/lib/utils';
 
 /* ═══════════════════════════════════════
@@ -54,7 +55,8 @@ function SectionHead({ no, title }: { no: string; title: string }) {
 export default function GenericTheme() {
     const [hovered, setHovered] = useState<string | null>(null);
     const year = new Date().getFullYear();
-    const quote = testimonials[0];
+    const { items: liveTestimonials } = useApprovedTestimonials();
+    const quote = liveTestimonials[0];
 
     return (
         <div className="min-h-screen antialiased" style={{ backgroundColor: PAPER, color: INK }}>

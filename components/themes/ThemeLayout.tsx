@@ -4,8 +4,6 @@ import { ReactNode } from 'react';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import ThemeSwitcher from './ThemeSwitcher';
 import GoogleTheme from './GoogleTheme';
-import MacOSTheme from './MacOSTheme';
-import Win95Theme from './Win95Theme';
 import NewspaperTheme from './NewspaperTheme';
 import VSCodeTheme from './VSCodeTheme';
 import GenericTheme from './GenericTheme';
@@ -19,8 +17,6 @@ function ThemeOverlay() {
         case 'galaxy': return <GalaxyTheme />;
         case 'generic': return <GenericTheme />;
         case 'google': return <GoogleTheme />;
-        // case 'macos': return <MacOSTheme />;
-        // case 'win95': return <Win95Theme />;
         case 'newspaper': return <NewspaperTheme />;
         case 'vscode': return <VSCodeTheme />;
         default: return null;

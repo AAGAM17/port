@@ -3,11 +3,12 @@
 import { useState, useEffect, useLayoutEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { personalInfo, systemMetrics, navLinks, testimonials, projects } from '@/lib/data';
+import { personalInfo, systemMetrics, navLinks, projects } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import TestimonialsSection from '@/components/testimonials/Testimonials';
 import {
     Rocket, Code, Trophy, Globe, Terminal, Menu, X, ChevronRight,
-    MapPin, Quote, ChevronLeft, MessageSquarePlus, ArrowUpRight,
+    MapPin, ArrowUpRight,
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════
@@ -87,7 +88,7 @@ function IntroGate() {
                     initial={{ opacity: 0, letterSpacing: '0.6em' }}
                     animate={{ opacity: 1, letterSpacing: '0.28em' }}
                     transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-3xl sm:text-5xl font-light text-white uppercase whitespace-nowrap pl-[0.28em] text-center"
+                    className="text-[clamp(1.5rem,7.5vw,3rem)] font-light text-white uppercase whitespace-nowrap pl-[0.28em] text-center"
                     style={{ fontFamily: 'var(--font-grotesk)' }}
                 >
                     Aagam Shah
@@ -125,12 +126,6 @@ const featured = projects.slice(0, 3);
 
 export default function HomePage() {
     const [mobileMenu, setMobileMenu] = useState(false);
-    const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-    useEffect(() => {
-        const timer = setInterval(() => setCurrentTestimonial(prev => (prev + 1) % testimonials.length), 6000);
-        return () => clearInterval(timer);
-    }, []);
 
     return (
         <div className="min-h-screen bg-space-950 grid-overlay relative">
@@ -312,60 +307,8 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* ── TESTIMONIALS ── */}
-            <section className="relative z-10 py-20 px-6">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.02] to-transparent pointer-events-none" />
-                <div className="max-w-4xl mx-auto relative">
-                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12 text-center">
-                        <span className="text-[10px] font-mono tracking-[0.4em] text-gray-700 block mb-4">WHAT PEOPLE SAY</span>
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-grotesk)' }}>
-                            Testimonials
-                        </h2>
-                    </motion.div>
-                    <div className="relative">
-                        <Quote size={40} className="absolute -top-2 -left-2 text-cyan-400/10 z-0" />
-                        <AnimatePresence mode="wait">
-                            <motion.div key={currentTestimonial} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }} className="relative z-10 text-center py-8">
-                                <blockquote className="text-xl md:text-2xl lg:text-3xl text-gray-300 leading-relaxed mb-10 max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-serif)' }}>
-                                    &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
-                                </blockquote>
-                                <div className="flex items-center justify-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400/20 to-violet-400/20 border border-white/10 flex items-center justify-center text-sm font-bold text-white">
-                                        {testimonials[currentTestimonial].avatar}
-                                    </div>
-                                    <div className="text-left">
-                                        <span className="text-sm font-semibold block">{testimonials[currentTestimonial].name}</span>
-                                        <span className="text-xs text-gray-500">{testimonials[currentTestimonial].role}{testimonials[currentTestimonial].company ? ` · ${testimonials[currentTestimonial].company}` : ''}</span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                        <div className="flex items-center justify-center gap-6 mt-6">
-                            <button onClick={() => setCurrentTestimonial(prev => (prev - 1 + testimonials.length) % testimonials.length)} className="p-2 text-gray-600 hover:text-white transition-colors border border-white/5 rounded-lg hover:border-cyan-400/20" aria-label="Previous testimonial">
-                                <ChevronLeft size={18} />
-                            </button>
-                            <div className="flex gap-2">
-                                {testimonials.map((_, i) => (
-                                    <button key={i} onClick={() => setCurrentTestimonial(i)} aria-label={`Testimonial ${i + 1}`} className={cn('w-2 h-2 rounded-full transition-all', i === currentTestimonial ? 'bg-cyan-400 w-6' : 'bg-gray-800 hover:bg-gray-600')} />
-                                ))}
-                            </div>
-                            <button onClick={() => setCurrentTestimonial(prev => (prev + 1) % testimonials.length)} className="p-2 text-gray-600 hover:text-white transition-colors border border-white/5 rounded-lg hover:border-cyan-400/20" aria-label="Next testimonial">
-                                <ChevronRight size={18} />
-                            </button>
-                        </div>
-                        {/* Submit testimonial CTA */}
-                        <div className="mt-10 text-center">
-                            <a
-                                href={`mailto:${personalInfo.email}?subject=${encodeURIComponent('Testimonial for Aagam Shah')}&body=${encodeURIComponent('Hey Aagam,\n\nI\'d love to leave a testimonial for your portfolio!\n\nMy Name: \nMy Role/Title: \nCompany/Organization: \nTestimonial:\n\n')}`}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 text-[11px] font-mono tracking-[0.15em] text-gray-500 border border-white/5 rounded-full hover:border-emerald-400/30 hover:text-emerald-400 hover:bg-emerald-400/5 transition-all group"
-                            >
-                                <MessageSquarePlus size={14} className="group-hover:text-emerald-400 transition-colors" />
-                                WORKED WITH ME? SHARE YOUR TESTIMONIAL
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* ── TESTIMONIALS (live, visitor-submitted, owner-approved) ── */}
+            <TestimonialsSection />
 
             {/* ── FOOTER with Terminal Easter Egg ── */}
             <footer className="relative z-10 border-t border-cyan-400/10 bg-space-950/80 backdrop-blur-sm">
