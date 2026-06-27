@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { navLinks } from '@/lib/data';
 import {
     Search, Command, Home, User, FolderKanban, Brain, Trophy,
-    Briefcase, Lightbulb, Terminal, Mail, ArrowRight,
+    Briefcase, Lightbulb, Terminal, Mail, ArrowRight, type LucideIcon,
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════
@@ -15,7 +15,7 @@ import {
    every page. Glassmorphism card with search.
    ═══════════════════════════════════════ */
 
-const pageIcons: Record<string, React.ElementType> = {
+const pageIcons: Record<string, LucideIcon> = {
     '/': Home,
     '/about': User,
     '/projects': FolderKanban,

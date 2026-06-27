@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import ThemeSwitcher from './ThemeSwitcher';
 import GoogleTheme from './GoogleTheme';
@@ -25,7 +26,19 @@ function ThemeOverlay() {
 
 function ThemeContent({ children }: { children: ReactNode }) {
     const { theme } = useTheme();
+    const pathname = usePathname();
     const isDefault = theme === 'default';
+
+    // The immersive /mind journey owns the whole viewport — bypass theme
+    // overlays and the switcher FAB, but keep Veda (she's part of the brand).
+    if (pathname?.startsWith('/mind')) {
+        return (
+            <>
+                {children}
+                <VedaAssistant />
+            </>
+        );
+    }
 
     return (
         <>

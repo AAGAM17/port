@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme, THEMES, ThemeId } from './ThemeContext';
-import { Palette, X } from 'lucide-react';
+import { Palette, X, Brain } from 'lucide-react';
 
 export default function ThemeSwitcher() {
     const { theme, setTheme } = useTheme();
@@ -59,6 +60,26 @@ export default function ThemeSwitcher() {
                                         <X size={16} />
                                     </button>
                                 </div>
+
+                                {/* Featured — the immersive 3D journey (its own route) */}
+                                <Link
+                                    href="/mind"
+                                    onClick={() => setOpen(false)}
+                                    className="w-full flex items-center gap-3 p-3 mb-3 rounded-xl text-left group border border-cyan-400/30 hover:border-cyan-400/60 transition-all"
+                                    style={{ background: 'linear-gradient(135deg, #0b1220 0%, #10182e 100%)' }}
+                                >
+                                    <span className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: 'rgba(127,212,255,0.12)', color: '#7fd4ff' }}>
+                                        <Brain size={18} />
+                                    </span>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-sm font-medium text-white">Inside the Mind</span>
+                                            <span className="text-[8px] font-mono px-1.5 py-0.5 rounded-full bg-cyan-400/15 text-cyan-300">NEW</span>
+                                        </div>
+                                        <span className="text-[11px] text-gray-500">A cinematic scroll through the brain</span>
+                                    </div>
+                                    <span className="text-cyan-300/70 group-hover:translate-x-0.5 transition-transform">→</span>
+                                </Link>
 
                                 <div className="space-y-2">
                                     {THEMES.map((t) => (

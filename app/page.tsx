@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import TestimonialsSection from '@/components/testimonials/Testimonials';
 import {
     Rocket, Code, Trophy, Globe, Terminal, Menu, X, ChevronRight,
-    MapPin, ArrowUpRight,
+    MapPin, ArrowUpRight, type LucideIcon,
 } from 'lucide-react';
 
 /* ═══════════════════════════════════════
@@ -18,7 +18,7 @@ import {
    → Principles → Testimonials → Footer.
    ═══════════════════════════════════════ */
 
-const iconMap: Record<string, React.ElementType> = { Rocket, Code, Trophy, Globe };
+const iconMap: Record<string, LucideIcon> = { Rocket, Code, Trophy, Globe };
 
 const INTRO_KEY = 'aagam.intro.seen';
 const EASE_DRAMATIC = [0.83, 0, 0.17, 1] as const;

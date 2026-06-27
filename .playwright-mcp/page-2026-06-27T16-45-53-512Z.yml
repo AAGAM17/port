@@ -1,0 +1,9 @@
+- generic [active]:
+  - button "K" [ref=e1]:
+    - img [ref=e2]
+    - generic [ref=e4]: K
+  - generic "Loading" [ref=e5]
+  - button "Talk to Veda, Aagam's AI assistant" [ref=e8]:
+    - img [ref=e10]
+  - button "Open Next.js Dev Tools" [ref=e18] [cursor=pointer]:
+    - img [ref=e19]
